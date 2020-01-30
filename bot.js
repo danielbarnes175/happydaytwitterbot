@@ -9,7 +9,7 @@ const text1 = fs.readFileSync("./words/adjectivelist.txt").toString('utf-8');
 const text2 = fs.readFileSync("./words/nounlist.txt").toString('utf-8');
 const text3 = fs.readFileSync("./words/abstractnounlist.txt").toString('utf-8');
 
-let timeBetweenTweets = 1000 * 60 * 60 * 24;
+let timeBetweenTweets = 1000 * 60 * 60;
 //let timeBetweenTweets = 60000;
 
 let Twitter = new twit(botSettings);
@@ -48,7 +48,16 @@ let tweet_day = function() {
 	});
 }
 
-tweet_day();
+tweetLoop();
 
-
-setInterval(tweet_day, timeBetweenTweets);
+function tweetLoop() {
+	    (function loop() {
+	        var now = new Date();
+	        if (/*now.getDate() === 6 && */now.getHours() === 8 /*&& now.getMinutes() === 46*/) {
+	            tweet_day();
+			}
+	        now = new Date();                  // allow for time passing
+	        var delay = 60000 - (now % 60000); // exact ms to next minute interval
+	        setTimeout(loop, delay);
+	    })();
+	}
