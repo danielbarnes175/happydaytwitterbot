@@ -38,12 +38,14 @@ let tweet_day = function() {
 
 	let tweet = `Happy ${adj} ${noun} ${abstract} Day!`;
 
+	let now = new Date();
 	Twitter.post('statuses/update', { status: tweet}, function(err, data, response) {
 		if (err) {
-			console.log(err.message);
+			console.err(err.message);
+			console.log("Error at " + now);
 		} else {
 			//console.log(data);
-			console.log("Successfully tweeted!");
+			console.log("Successfully tweeted at " + now + "!");
 		}
 	});
 }
