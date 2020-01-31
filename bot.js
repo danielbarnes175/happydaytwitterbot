@@ -40,7 +40,7 @@ let tweet_day = function() {
 
 	Twitter.post('statuses/update', { status: tweet}, function(err, data, response) {
 		if (err) {
-			console.log(err);
+			console.log(err.message);
 		} else {
 			//console.log(data);
 			console.log("Successfully tweeted!");
@@ -53,11 +53,11 @@ tweetLoop();
 function tweetLoop() {
 	    (function loop() {
 	        var now = new Date();
-	        if (/*now.getDate() === 6 && */now.getHours() === 8 /*&& now.getMinutes() === 46*/) {
+	        if (/*now.getDate() === 6 && */now.getHours() === 7 /*&& now.getMinutes() === 46*/) {
 	            tweet_day();
 			}
 	        now = new Date();                  // allow for time passing
-	        var delay = 60000 - (now % 60000); // exact ms to next minute interval
+	        var delay = timeBetweenTweets - (now % timeBetweenTweets); // exact ms to next minute interval
 	        setTimeout(loop, delay);
 	    })();
 	}
