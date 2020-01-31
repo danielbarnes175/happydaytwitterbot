@@ -13,7 +13,8 @@ let timeBetweenTweets = 1000 * 60 * 60;
 //let timeBetweenTweets = 60000;
 
 let Twitter = new twit(botSettings);
-console.log("Bot online!");
+let currentTime = new Date();
+console.log("Bot online! Current time is " + currentTime);
 
 
 let tweet_day = function() {
