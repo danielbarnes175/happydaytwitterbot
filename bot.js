@@ -42,7 +42,7 @@ let tweet_day = function() {
 	let now = new Date();
 	Twitter.post('statuses/update', { status: tweet}, function(err, data, response) {
 		if (err) {
-			console.err(err.message);
+			console.error(err.message);
 			console.log("Error at " + now);
 		} else {
 			//console.log(data);
